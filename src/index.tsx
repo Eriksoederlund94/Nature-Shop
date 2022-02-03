@@ -3,12 +3,18 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+// ContextProvider
+import AppContextProvider from './context/AppContext';
+
+// GlobalStyles
 import GlobalStyles from './GlobalStyles';
 
 ReactDOM.render(
   <React.StrictMode>
-    <GlobalStyles />
-    <App />
+    <AppContextProvider>
+      <GlobalStyles />
+      <App />
+    </AppContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
