@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import styled from 'styled-components';
 import { AppContext } from '../context/AppContext';
@@ -6,10 +7,10 @@ import { AppContext } from '../context/AppContext';
 function LoginPage() {
   const { state, dispatch } = useContext(AppContext);
 
+  let navigate = useNavigate();
+
   const userData = state.initialUser;
   const loggedIn = state.isLoggedIn || false;
-
-  console.log(loggedIn);
 
   const loginHandler = (event: any) => {
     event.preventDefault();
@@ -21,6 +22,7 @@ function LoginPage() {
 
     if (userNameCheck) {
       if (passwordCheck) {
+        navigate('/store');
         dispatch({ type: 'SET_LOGGED_IN' });
       }
     }
@@ -28,7 +30,9 @@ function LoginPage() {
 
   return (
     <LoginPageWrapper>
-      {loggedIn ? null : (
+      {loggedIn ? (
+        <h1>You are logged in</h1>
+      ) : (
         <div className='login-container'>
           <h1>Sign in</h1>
           <p>Sign in and start shopping!</p>
