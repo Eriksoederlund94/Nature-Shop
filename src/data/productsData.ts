@@ -1,13 +1,13 @@
 import { nanoid } from 'nanoid';
 import { ProductItems } from '../interfaces/productsData.interface';
-import apple from '../../public/assets/apple.png';
-import banana from '../../public/assets/banana.png';
-import dragon from '../../public/assets/dragon.png';
-import egg from '../../public/assets/egg.png';
-import ginger from '../../public/assets/ginger.png';
-import kiwi from '../../public/assets/kiwi.png';
-import melon from '../../public/assets/melon.png';
-import pepper from '../../public/assets/red-pepper.png';
+import apple from '../images/apple.png';
+import banana from '../images/banana.png';
+import dragon from '../images/dragon.png';
+import egg from '../images/egg.png';
+import ginger from '../images/ginger.png';
+import kiwi from '../images/kiwi.png';
+import melon from '../images/melon.png';
+import pepper from '../images/red-pepper.png';
 
 export const productData: ProductItems[] = [
   {

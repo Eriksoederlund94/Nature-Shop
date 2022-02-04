@@ -1,8 +1,12 @@
 import { createContext, useReducer } from 'react';
 import { AppAction, AppReducer } from './AppReducer';
+import { productData } from '../data/productsData';
+import { userData } from '../data/userData';
 
 const initialState = {
   isLoggedIn: false,
+  initialProducts: productData,
+  initialUser: userData,
 };
 
 interface AppContextProps {

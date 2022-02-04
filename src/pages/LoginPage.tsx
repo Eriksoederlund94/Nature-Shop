@@ -1,17 +1,44 @@
+import { useContext } from 'react';
+
 import styled from 'styled-components';
+import { AppContext } from '../context/AppContext';
 
 function LoginPage() {
+  const { state, dispatch } = useContext(AppContext);
+
+  const userData = state.initialUser;
+  const loggedIn = state.isLoggedIn || false;
+
+  console.log(loggedIn);
+
+  const loginHandler = (event: any) => {
+    event.preventDefault();
+    const userNameInput = event.target.login.value;
+    const passwordNameInput = event.target.password.value;
+
+    const userNameCheck = userData.some((user) => user.userName === userNameInput);
+    const passwordCheck = userData.some((user) => user.password === passwordNameInput);
+
+    if (userNameCheck) {
+      if (passwordCheck) {
+        dispatch({ type: 'SET_LOGGED_IN' });
+      }
+    }
+  };
+
   return (
     <LoginPageWrapper>
-      <div className='login-container'>
-        <h1>Sign in</h1>
-        <p>Sign in and start shopping!</p>
-        <form action='submit' title='login-form'>
-          <input type='text' name='login' placeholder='Login' className='login' required />
-          <input type='password' name='password' placeholder='Password' className='password' required />
-          <button type='submit'>Login</button>
-        </form>
-      </div>
+      {loggedIn ? null : (
+        <div className='login-container'>
+          <h1>Sign in</h1>
+          <p>Sign in and start shopping!</p>
+          <form action='submit' title='login-form' onSubmit={loginHandler}>
+            <input type='text' name='login' placeholder='Login' className='login' required />
+            <input type='password' name='password' placeholder='Password' className='password' required />
+            <button type='submit'>Login</button>
+          </form>
+        </div>
+      )}
     </LoginPageWrapper>
   );
 }
