@@ -20,6 +20,11 @@ const NavBarWrapper = styled.nav`
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: 'Aldrich', sans-serif;
+
+  @media screen and (max-width: 440px) {
+    font-size: 1.4rem;
+  }
 
   .logo {
     padding-right: 1rem;
