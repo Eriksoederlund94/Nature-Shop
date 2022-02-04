@@ -1,5 +1,9 @@
 import { createGlobalStyle } from 'styled-components';
 
+interface Props {
+  theme: string;
+}
+
 const GlobalStyle = createGlobalStyle`
 *{
   margin: 0;

@@ -7,4 +7,9 @@ export const userData: UserItems[] = [
     userName: 'guest',
     password: 'pwd123',
   },
+  {
+    id: nanoid(),
+    userName: 'user123',
+    password: 'pwd123',
+  },
 ];

@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import styled from 'styled-components';
@@ -6,6 +6,7 @@ import { AppContext } from '../context/AppContext';
 
 function LoginPage() {
   const { state, dispatch } = useContext(AppContext);
+  const [errorMessage, setErrorMessage] = useState('');
 
   let navigate = useNavigate();
 
@@ -26,12 +27,18 @@ function LoginPage() {
         dispatch({ type: 'SET_LOGGED_IN' });
       }
     }
+    setErrorMessage('Wrong username or password!');
   };
 
   return (
     <LoginPageWrapper>
       {loggedIn ? (
-        <h1>You are logged in</h1>
+        <div className='loggedIn'>
+          <h1>You are logged in!</h1>{' '}
+          <button className='backToStore-btn' onClick={() => navigate('store')}>
+            Back to store
+          </button>
+        </div>
       ) : (
         <div className='login-container'>
           <h1>Sign in</h1>
@@ -40,6 +47,7 @@ function LoginPage() {
             <input type='text' name='login' placeholder='Login' className='login' required />
             <input type='password' name='password' placeholder='Password' className='password' required />
             <button type='submit'>Login</button>
+            <p className='error'>{errorMessage}</p>
           </form>
         </div>
       )}
@@ -48,7 +56,7 @@ function LoginPage() {
 }
 
 const LoginPageWrapper = styled.div`
-  min-height: 100vh;
+  min-height: 80vh;
   min-width: 100%;
   background-color: #093545;
   display: flex;
@@ -62,6 +70,16 @@ const LoginPageWrapper = styled.div`
     height: 500px;
     padding: 20px;
     width: 320px;
+
+    .error {
+      animation: blinker 1s linear infinite;
+    }
+
+    @keyframes blinker {
+      50% {
+        opacity: 0;
+      }
+    }
 
     h1 {
       color: #eee;
@@ -118,6 +136,27 @@ const LoginPageWrapper = styled.div`
       text-align: center;
       width: 100%;
       cursor: pointer;
+
+      &:hover {
+        background-color: #85b654;
+      }
+    }
+  }
+
+  .loggedIn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #fff;
+
+    .backToStore-btn {
+      all: unset;
+      cursor: pointer;
+      padding: 1rem 1.5rem;
+      margin: 1rem;
+      border-radius: 0.3rem;
+      background-color: #9bcd6a;
 
       &:hover {
         background-color: #85b654;
