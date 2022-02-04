@@ -7,6 +7,11 @@ const GlobalStyle = createGlobalStyle`
   box-sizing: border-box;
 }
 
+body{
+  font-family: 'Lexend Deca', sans-serif;
+  font-size: 16px;
+}
+
 `;
 
 export default GlobalStyle;
