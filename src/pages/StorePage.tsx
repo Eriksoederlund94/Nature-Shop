@@ -3,13 +3,14 @@ import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../context/AppContext';
 
+// Component
+import Store from '../components/store/Store';
+
 function StorePage() {
-  const { state, dispatch } = useContext(AppContext);
+  const { state } = useContext(AppContext);
   let navigate = useNavigate();
 
   const loggedIn = state.isLoggedIn || false;
-
-  console.log(loggedIn);
 
   useEffect(() => {
     if (loggedIn === false) {
@@ -21,7 +22,7 @@ function StorePage() {
     <>
       {loggedIn ? (
         <StorePageWrapper>
-          <h1>STORE</h1>
+          <Store />
         </StorePageWrapper>
       ) : null}
     </>

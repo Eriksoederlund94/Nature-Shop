@@ -2,12 +2,12 @@ import { nanoid } from 'nanoid';
 import { ProductItems } from '../interfaces/productsData.interface';
 import apple from '../images/apple.png';
 import banana from '../images/banana.png';
-import dragon from '../images/dragon.png';
-import egg from '../images/egg.png';
+import orange from '../images/orange.png';
+import cucumber from '../images/cucumber.png';
 import ginger from '../images/ginger.png';
 import kiwi from '../images/kiwi.png';
 import melon from '../images/melon.png';
-import pepper from '../images/red-pepper.png';
+import pepper from '../images/pepper.png';
 
 export const productData: ProductItems[] = [
   {
@@ -28,16 +28,16 @@ export const productData: ProductItems[] = [
   },
   {
     id: nanoid(),
-    imageUrl: dragon,
-    produceName: 'dragon fruit',
+    imageUrl: orange,
+    produceName: 'orange',
     weight: '2kg',
     price: 100,
     inStock: 20,
   },
   {
     id: nanoid(),
-    imageUrl: egg,
-    produceName: 'eggs',
+    imageUrl: cucumber,
+    produceName: 'cucumber',
     weight: '2kg',
     price: 100,
     inStock: 20,
