@@ -1,7 +1,5 @@
-export type CartItem = {
-  id: number;
-  image: string;
-  price: number;
-  produceName: string;
+import { ProductItem } from './productsData.interface';
+
+export interface CartItem extends ProductItem {
   amount: number;
-};
+}

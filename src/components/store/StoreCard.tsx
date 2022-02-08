@@ -1,30 +1,54 @@
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { ProductItems } from '../../interfaces/productsData.interface';
+import { ProductItem } from '../../interfaces/productsData.interface';
 import { AppContext } from '../../context/AppContext';
+import { CartItem } from '../../interfaces/cartData.interface';
 
-function StoreCard({ id, imageUrl, produceName, weight, price, inStock }: ProductItems) {
+function StoreCard({ id, imageUrl, produceName, weight, price, inStock }: ProductItem) {
   const { state, dispatch } = useContext(AppContext);
+  const [toogle, setToogle] = useState(true);
+
+  const isInCart = () => {
+    if (state && state.cart.find((item: CartItem) => item.id === id)) {
+      return true;
+    }
+    return false;
+  };
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(state.cart));
+  }, [state.cart]);
 
   const addToCartHandler = () => {
     let productId = id;
     let productArray = state.initialProducts;
+    let cartArry = state.cart;
+    const addProduct = productArray.find((item) => item.id === productId)!;
 
-    const addProduct = productArray.find((item) => item.id === productId);
+    const cartItem: CartItem = { ...addProduct, amount: 1 };
+
+    localStorage.setItem('cart', JSON.stringify(cartArry));
 
     dispatch({
       type: 'SET_CART',
-      payload: addProduct,
+      payload: cartItem,
     });
+
+    setToogle(false);
   };
 
   return (
-    <StoreCardWrapper>
-      <img src={imageUrl} alt='' />
-      <h2>{produceName.toUpperCase()}</h2>
-      <p>{price}kr</p>
-      <button onClick={addToCartHandler}>Add to Cart</button>
-    </StoreCardWrapper>
+    <>
+      <StoreCardWrapper>
+        <img src={imageUrl} alt='product' />
+        <h2>{produceName.toUpperCase()}</h2>
+        <p>{price}kr</p>
+        <p>{inStock}</p>
+        <button onClick={addToCartHandler} disabled={isInCart()}>
+          {isInCart() ? 'In Cart' : 'Add to Cart'}
+        </button>
+      </StoreCardWrapper>
+    </>
   );
 }
 
@@ -60,6 +84,10 @@ const StoreCardWrapper = styled.div`
 
     &:hover {
       opacity: 0.7;
+    }
+
+    &:disabled {
+      opacity: 0.5;
     }
   }
 `;

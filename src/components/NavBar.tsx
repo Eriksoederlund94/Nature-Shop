@@ -1,17 +1,23 @@
-import React from 'react';
 import styled from 'styled-components';
 import logo from '../images/planet-earth-logo.png';
+import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function NavBar() {
+  const { pathname } = useLocation();
+  let navigate = useNavigate();
+
   return (
-    <NavBarWrapper>
+    <NavBarWrapper pathname={pathname}>
       <img className='logo' src={logo} alt='logo' />
       <h1>The Nature Shop</h1>
+      <button onClick={() => navigate('/cart')}>Cart</button>
+      <button onClick={() => navigate('/store')}>Store</button>
     </NavBarWrapper>
   );
 }
 
-const NavBarWrapper = styled.nav`
+const NavBarWrapper = styled.nav<{ pathname: string }>`
   min-height: 10vh;
   padding-top: 2rem;
   color: #9bcd6a;

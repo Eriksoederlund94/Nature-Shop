@@ -1,14 +1,15 @@
-import { createContext, useReducer } from 'react';
+import { createContext, useEffect, useReducer } from 'react';
 import { AppAction, AppReducer } from './AppReducer';
 import { productData } from '../data/productsData';
 import { userData } from '../data/userData';
-import { CartItem } from '../interfaces/cartData.interface';
+import { getLocalCart } from '../utils/helpers';
 
 const initialState = {
-  isLoggedIn: false,
+  isLoggedIn: true,
+  currentUser: '',
   initialProducts: productData,
   initialUser: userData,
-  cart: [] as CartItem[],
+  cart: getLocalCart(),
 };
 
 interface AppContextProps {

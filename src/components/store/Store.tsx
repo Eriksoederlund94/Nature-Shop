@@ -1,17 +1,15 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import StoreCard from './StoreCard';
 import { AppContext } from '../../context/AppContext';
 import styled from 'styled-components';
 
 function Store() {
-  const { state } = useContext(AppContext);
+  const { state, dispatch } = useContext(AppContext);
   const productState = state.initialProducts && state?.initialProducts;
 
-  const getTotalItems = () => {
+  /*   const getTotalItems = () => {
     productState.reduce((ack, items) => ack + items.price, 0);
-  };
-
-  console.log(getTotalItems);
+  }; */
 
   return (
     <StoreWrapper>

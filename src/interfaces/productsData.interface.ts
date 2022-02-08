@@ -1,4 +1,4 @@
-export interface ProductItems {
+export interface ProductItem {
   id: string;
   imageUrl: string;
   produceName: string;

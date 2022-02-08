@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid';
-import { ProductItems } from '../interfaces/productsData.interface';
+import { ProductItem } from '../interfaces/productsData.interface';
 import apple from '../images/apple.png';
 import banana from '../images/banana.png';
 import orange from '../images/orange.png';
@@ -9,9 +9,9 @@ import kiwi from '../images/kiwi.png';
 import melon from '../images/melon.png';
 import pepper from '../images/pepper.png';
 
-export const productData: ProductItems[] = [
+export const productData: ProductItem[] = [
   {
-    id: nanoid(),
+    id: '1',
     imageUrl: apple,
     produceName: 'apples',
     weight: '2kg',
@@ -19,7 +19,7 @@ export const productData: ProductItems[] = [
     inStock: 20,
   },
   {
-    id: nanoid(),
+    id: '2',
     imageUrl: banana,
     produceName: 'bananas',
     weight: '2kg',
@@ -27,7 +27,7 @@ export const productData: ProductItems[] = [
     inStock: 20,
   },
   {
-    id: nanoid(),
+    id: '3',
     imageUrl: orange,
     produceName: 'orange',
     weight: '2kg',
@@ -35,7 +35,7 @@ export const productData: ProductItems[] = [
     inStock: 20,
   },
   {
-    id: nanoid(),
+    id: '4',
     imageUrl: cucumber,
     produceName: 'cucumber',
     weight: '2kg',
@@ -43,7 +43,7 @@ export const productData: ProductItems[] = [
     inStock: 20,
   },
   {
-    id: nanoid(),
+    id: '5',
     imageUrl: ginger,
     produceName: 'ginger',
     weight: '2kg',
@@ -51,7 +51,7 @@ export const productData: ProductItems[] = [
     inStock: 20,
   },
   {
-    id: nanoid(),
+    id: '6',
     imageUrl: kiwi,
     produceName: 'kiwi',
     weight: '2kg',
@@ -59,7 +59,7 @@ export const productData: ProductItems[] = [
     inStock: 20,
   },
   {
-    id: nanoid(),
+    id: '7',
     imageUrl: melon,
     produceName: 'melon',
     weight: '2kg',
@@ -67,7 +67,7 @@ export const productData: ProductItems[] = [
     inStock: 20,
   },
   {
-    id: nanoid(),
+    id: '8',
     imageUrl: pepper,
     produceName: 'red pepper',
     weight: '2kg',

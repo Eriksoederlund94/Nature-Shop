@@ -25,6 +25,10 @@ function LoginPage() {
       if (passwordCheck) {
         navigate('/store');
         dispatch({ type: 'SET_LOGGED_IN' });
+        dispatch({
+          type: 'SET_CURRENT_USER',
+          payload: userNameInput,
+        });
       }
     }
     setErrorMessage('Wrong username or password!');

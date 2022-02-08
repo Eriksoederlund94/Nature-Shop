@@ -1,5 +1,5 @@
 //React Router Dom
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 // Component
 import NavBar from './components/NavBar';
@@ -10,7 +10,12 @@ import LoginPage from './pages/LoginPage';
 import StorePage from './pages/StorePage';
 import CheckoutPage from './pages/CheckoutPage';
 
+import { useContext } from 'react';
+import { AppContext } from './context/AppContext';
+
 function App() {
+  const { state, dispatch } = useContext(AppContext);
+
   return (
     <div className='App'>
       <nav>
@@ -18,9 +23,9 @@ function App() {
       </nav>
       <main>
         <Routes>
-          <Route path='/' element={<LoginPage />}></Route>
-          <Route path='/store' element={<StorePage />}></Route>
-          <Route path='/cart' element={<CheckoutPage />}></Route>
+          <Route path='/' element={state.isLoggedIn ? <Navigate to='store' replace /> : <LoginPage />} />
+          <Route path='/store' element={!state.isLoggedIn ? <Navigate to='/' replace /> : <StorePage />} />
+          <Route path='/cart' element={<CheckoutPage />} />
         </Routes>
       </main>
       <Footer />
