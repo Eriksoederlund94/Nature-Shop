@@ -13,7 +13,7 @@ function loadProducts() {
 }
 
 const initialState = {
-  isLoggedIn: true,
+  isLoggedIn: false,
   currentUser: '',
   initialProducts: loadProducts(),
   initialUser: userData,

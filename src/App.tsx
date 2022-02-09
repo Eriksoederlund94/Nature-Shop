@@ -14,7 +14,7 @@ import { useContext } from 'react';
 import { AppContext } from './context/AppContext';
 
 function App() {
-  const { state, dispatch } = useContext(AppContext);
+  const { state } = useContext(AppContext);
 
   return (
     <div className='App'>
@@ -25,7 +25,7 @@ function App() {
         <Routes>
           <Route path='/' element={state.isLoggedIn ? <Navigate to='store' replace /> : <LoginPage />} />
           <Route path='/store' element={!state.isLoggedIn ? <Navigate to='/' replace /> : <StorePage />} />
-          <Route path='/cart' element={<CheckoutPage />} />
+          <Route path='/cart' element={!state.isLoggedIn ? <Navigate to='/' replace /> : <CheckoutPage />} />
         </Routes>
       </main>
       <Footer />

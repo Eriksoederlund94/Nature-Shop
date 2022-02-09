@@ -4,12 +4,12 @@ import { UserItems } from '../interfaces/usersData.interface';
 export const userData: UserItems[] = [
   {
     id: nanoid(),
-    userName: 'guest',
+    userName: 'Erik',
     password: 'pwd123',
   },
   {
     id: nanoid(),
-    userName: 'user123',
+    userName: 'Benny',
     password: 'pwd123',
   },
 ];

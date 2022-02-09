@@ -8,6 +8,7 @@ function Cart() {
   const { state } = useContext(AppContext);
   const cartState = state.cart && state?.cart;
   let cartlocalState = getLocalCart();
+  const user = state.currentUser;
 
   const totalPrice = cartlocalState.reduce((total: number, item: any) => {
     return total + item.price * item.amount;
@@ -15,11 +16,11 @@ function Cart() {
 
   return (
     <CartWrapper>
-      <h1>My Cart</h1>
+      {cartlocalState.length > 0 ? <h1>{user}s Cart</h1> : null}
       {cartState.map((item: any) => (
         <CartCard key={item.id} {...item} />
       ))}
-      <h1>Total: {totalPrice}kr</h1>
+      {cartlocalState.length > 0 ? <h1>Total: {totalPrice}kr</h1> : null}
     </CartWrapper>
   );
 }

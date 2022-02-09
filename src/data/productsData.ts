@@ -8,6 +8,7 @@ import ginger from '../images/ginger.png';
 import kiwi from '../images/kiwi.png';
 import melon from '../images/melon.png';
 import pepper from '../images/pepper.png';
+import cherry from '../images/cherry.png';
 
 export const productData: ProductItem[] = [
   {
@@ -73,5 +74,13 @@ export const productData: ProductItem[] = [
     weight: '2kg',
     price: 100,
     inStock: 36,
+  },
+  {
+    id: '9',
+    imageUrl: cherry,
+    produceName: 'cherry',
+    weight: '2kg',
+    price: 100,
+    inStock: 25,
   },
 ];

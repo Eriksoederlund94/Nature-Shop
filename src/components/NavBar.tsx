@@ -2,17 +2,27 @@ import styled from 'styled-components';
 import logo from '../images/planet-earth-logo.png';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { AppContext } from '../context/AppContext';
 
 function NavBar() {
+  const { state } = useContext(AppContext);
   const { pathname } = useLocation();
   let navigate = useNavigate();
+
+  const isLoggedIn = state.isLoggedIn;
 
   return (
     <NavBarWrapper pathname={pathname}>
       <img className='logo' src={logo} alt='logo' />
       <h1>The Nature Shop</h1>
-      <button onClick={() => navigate('/cart')}>Cart</button>
-      <button onClick={() => navigate('/store')}>Store</button>
+      {isLoggedIn ? (
+        <>
+          <button onClick={() => navigate('/cart')}>Cart</button>
+          <button onClick={() => navigate('/store')}>Store</button>
+          <button>Logout</button>
+        </>
+      ) : null}
     </NavBarWrapper>
   );
 }

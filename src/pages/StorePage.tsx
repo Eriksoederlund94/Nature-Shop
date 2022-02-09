@@ -6,7 +6,6 @@ import Store from '../components/store/Store';
 function StorePage() {
   return (
     <StorePageWrapper>
-      <input type='text' placeholder='SEARCH ITEM!' />
       <Store />
     </StorePageWrapper>
   );
@@ -21,6 +20,13 @@ const StorePageWrapper = styled.div`
   align-items: center;
   flex-direction: column;
   color: #000;
+  margin-bottom: 2rem;
+
+  input {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem 1rem;
+  }
 `;
 
 export default StorePage;

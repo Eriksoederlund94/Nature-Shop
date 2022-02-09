@@ -7,9 +7,8 @@ import { AppContext } from '../../context/AppContext';
 import { getLocalCart } from '../../utils/helpers';
 
 function CartCard({ id, imageUrl, produceName, weight, price, inStock, amount }: CartItem) {
-  const { state, dispatch } = useContext(AppContext);
+  const { dispatch } = useContext(AppContext);
 
-  let productState = state && state.initialProducts;
   let cartlocalState = getLocalCart();
   let productLocalState = JSON.parse(localStorage.getItem('products')!);
 
