@@ -10,10 +10,9 @@ function CheckoutPage() {
 }
 
 const CheckoutPageWrapper = styled.div`
-  margin: 0;
-  padding: 0;
+  min-height: 80vh;
+  min-width: 100%;
   background-color: #093545;
-  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;

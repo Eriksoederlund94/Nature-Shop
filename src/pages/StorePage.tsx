@@ -5,11 +5,10 @@ import Store from '../components/store/Store';
 
 function StorePage() {
   return (
-    <>
-      <StorePageWrapper>
-        <Store />
-      </StorePageWrapper>
-    </>
+    <StorePageWrapper>
+      <input type='text' placeholder='SEARCH ITEM!' />
+      <Store />
+    </StorePageWrapper>
   );
 }
 
@@ -20,6 +19,7 @@ const StorePageWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   color: #000;
 `;
 

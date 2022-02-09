@@ -63,6 +63,23 @@ function CartCard({ id, imageUrl, produceName, weight, price, inStock, amount }:
         payload: newCart,
       });
 
+      productLocalState.map((item: any) => {
+        if (item.id === id) {
+          return {
+            ...item,
+            inStock: item.inStock++,
+          };
+        }
+        return item;
+      });
+
+      localStorage.setItem('products', JSON.stringify(productLocalState));
+
+      dispatch({
+        type: 'SET_INITIAL_PRODUCTS',
+        payload: productLocalState,
+      });
+
       return;
     }
 
@@ -108,13 +125,19 @@ function CartCard({ id, imageUrl, produceName, weight, price, inStock, amount }:
       <div className='name-container'>
         <h1>{produceName}</h1>
         <p>{weight}</p>
+        <p>{inStock} in stock</p>
         <div className='counter-container'>
-          <button onClick={decrementBtnHandler}>-</button>
+          <button className='decrement' onClick={decrementBtnHandler}>
+            -
+          </button>
           <p>{amount}</p>
-          <button onClick={incrementBtnHandler}>+</button>
+          <button className='increment' onClick={incrementBtnHandler}>
+            +
+          </button>
         </div>
-        <p>{price}</p>
-        <p>{inStock}</p>
+      </div>
+      <div className='price-container'>
+        <p>{price}kr</p>
       </div>
     </CartItemWrapper>
   );
@@ -124,9 +147,37 @@ const CartItemWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 600px;
+  padding: 2rem;
 
   .counter-container {
     display: flex;
+  }
+
+  .name-container {
+    width: 180px;
+  }
+
+  .counter-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    button {
+      all: unset;
+      border: solid 2px #ccc;
+      padding: 0.5rem 0.8rem;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .decrement:hover {
+      color: red;
+    }
+
+    .increment:hover {
+      color: green;
+    }
   }
 
   img {

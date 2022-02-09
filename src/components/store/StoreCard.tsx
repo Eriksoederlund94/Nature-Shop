@@ -59,8 +59,8 @@ function StoreCard({ id, imageUrl, produceName, weight, price, inStock }: Produc
       <StoreCardWrapper>
         <img src={imageUrl} alt='product' />
         <h2>{produceName.toUpperCase()}</h2>
-        <p>{price}kr</p>
-        <p>{inStock}</p>
+        <p>{price} kr</p>
+        <p>{inStock} in stock</p>
         <button onClick={addToCartHandler} disabled={isInCart()}>
           {isInCart() ? 'In Cart' : 'Add to Cart'}
         </button>
