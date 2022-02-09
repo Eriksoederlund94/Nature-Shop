@@ -23,15 +23,30 @@ function StoreCard({ id, imageUrl, produceName, weight, price, inStock }: Produc
     let productId = id;
     let productArray = state.initialProducts;
     let cartArry = state.cart;
-    const addProduct = productArray.find((item) => item.id === productId)!;
+    const addProduct = productArray.find((item: any) => item.id === productId)!;
 
-    const cartItem: CartItem = { ...addProduct, amount: 1 };
+    const cartItem: CartItem = { ...addProduct, amount: 1, inStock: inStock - 1 };
 
     localStorage.setItem('cart', JSON.stringify(cartArry));
+
+    productArray.map((item: ProductItem) => {
+      if (item.id == id) {
+        return {
+          ...item,
+          inStock: item.inStock--,
+        };
+      }
+      return item;
+    });
 
     dispatch({
       type: 'SET_CART',
       payload: cartItem,
+    });
+
+    dispatch({
+      type: 'SET_INITIAL_PRODUCTS',
+      payload: productArray,
     });
 
     setToogle(false);

@@ -16,7 +16,7 @@ export const productData: ProductItem[] = [
     produceName: 'apples',
     weight: '2kg',
     price: 100,
-    inStock: 20,
+    inStock: 10,
   },
   {
     id: '2',
@@ -24,7 +24,7 @@ export const productData: ProductItem[] = [
     produceName: 'bananas',
     weight: '2kg',
     price: 100,
-    inStock: 20,
+    inStock: 18,
   },
   {
     id: '3',
@@ -32,7 +32,7 @@ export const productData: ProductItem[] = [
     produceName: 'orange',
     weight: '2kg',
     price: 100,
-    inStock: 20,
+    inStock: 40,
   },
   {
     id: '4',
@@ -40,7 +40,7 @@ export const productData: ProductItem[] = [
     produceName: 'cucumber',
     weight: '2kg',
     price: 100,
-    inStock: 20,
+    inStock: 80,
   },
   {
     id: '5',
@@ -48,7 +48,7 @@ export const productData: ProductItem[] = [
     produceName: 'ginger',
     weight: '2kg',
     price: 100,
-    inStock: 20,
+    inStock: 17,
   },
   {
     id: '6',
@@ -56,7 +56,7 @@ export const productData: ProductItem[] = [
     produceName: 'kiwi',
     weight: '2kg',
     price: 100,
-    inStock: 20,
+    inStock: 44,
   },
   {
     id: '7',
@@ -64,7 +64,7 @@ export const productData: ProductItem[] = [
     produceName: 'melon',
     weight: '2kg',
     price: 100,
-    inStock: 20,
+    inStock: 64,
   },
   {
     id: '8',
@@ -72,6 +72,6 @@ export const productData: ProductItem[] = [
     produceName: 'red pepper',
     weight: '2kg',
     price: 100,
-    inStock: 20,
+    inStock: 36,
   },
 ];

@@ -10,8 +10,8 @@ function CartCard({ id, imageUrl, produceName, weight, price, inStock, amount }:
   const { state, dispatch } = useContext(AppContext);
 
   let productState = state && state.initialProducts;
-
   let cartlocalState = getLocalCart();
+  let productLocalState = JSON.parse(localStorage.getItem('products')!);
 
   const incrementBtnHandler = () => {
     if (inStock === 0) {
@@ -29,7 +29,7 @@ function CartCard({ id, imageUrl, produceName, weight, price, inStock, amount }:
       return item;
     });
 
-    productState.map((item: ProductItem) => {
+    productLocalState.map((item: ProductItem) => {
       if (item.id == id) {
         return {
           ...item,
@@ -39,6 +39,7 @@ function CartCard({ id, imageUrl, produceName, weight, price, inStock, amount }:
       return item;
     });
     localStorage.setItem('cart', JSON.stringify(cartlocalState));
+    localStorage.setItem('products', JSON.stringify(productLocalState));
 
     dispatch({
       type: 'SET_CART_AMOUNT',
@@ -47,7 +48,7 @@ function CartCard({ id, imageUrl, produceName, weight, price, inStock, amount }:
 
     dispatch({
       type: 'SET_INITIAL_PRODUCTS',
-      payload: productState,
+      payload: productLocalState,
     });
   };
 
@@ -76,7 +77,7 @@ function CartCard({ id, imageUrl, produceName, weight, price, inStock, amount }:
       return item;
     });
 
-    productState.map((item: ProductItem) => {
+    productLocalState.map((item: ProductItem) => {
       if (item.id == id) {
         return {
           ...item,
@@ -91,10 +92,11 @@ function CartCard({ id, imageUrl, produceName, weight, price, inStock, amount }:
       payload: cartlocalState,
     });
     localStorage.setItem('cart', JSON.stringify(cartlocalState));
+    localStorage.setItem('products', JSON.stringify(productLocalState));
 
     dispatch({
       type: 'SET_INITIAL_PRODUCTS',
-      payload: productState,
+      payload: productLocalState,
     });
   };
 

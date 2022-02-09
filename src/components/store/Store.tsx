@@ -13,7 +13,7 @@ function Store() {
 
   return (
     <StoreWrapper>
-      {productState.map((products) => (
+      {productState.map((products: any) => (
         <StoreCard key={products.id} {...products} />
       ))}
     </StoreWrapper>

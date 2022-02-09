@@ -46,7 +46,6 @@ export function AppReducer(state: AppState, action: AppAction) {
         ...state,
         cart: action.payload,
       };
-
     default:
       return state;
   }
