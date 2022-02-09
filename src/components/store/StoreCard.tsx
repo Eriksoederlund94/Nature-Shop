@@ -39,6 +39,8 @@ function StoreCard({ id, imageUrl, produceName, weight, price, inStock }: Produc
       return item;
     });
 
+    localStorage.setItem('products', JSON.stringify(productArray));
+
     dispatch({
       type: 'SET_CART',
       payload: cartItem,
