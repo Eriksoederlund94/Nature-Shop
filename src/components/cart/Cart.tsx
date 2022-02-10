@@ -16,11 +16,11 @@ function Cart() {
 
   return (
     <CartWrapper>
-      {cartlocalState.length > 0 ? <h1>{user}s Cart</h1> : null}
+      {cartlocalState.length > 0 ? <h1>{user}s Cart</h1> : <h1>Your Cart is empty</h1>}
       {cartState.map((item: any) => (
         <CartCard key={item.id} {...item} />
       ))}
-      {cartlocalState.length > 0 ? <h1>Total: {totalPrice}kr</h1> : null}
+      {cartlocalState.length > 0 ? <h1>Total: ${totalPrice.toFixed(2)}</h1> : null}
     </CartWrapper>
   );
 }

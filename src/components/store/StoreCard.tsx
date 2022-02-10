@@ -57,13 +57,19 @@ function StoreCard({ id, imageUrl, produceName, weight, price, inStock }: Produc
   return (
     <>
       <StoreCardWrapper>
-        <img src={imageUrl} alt='product' />
-        <h2>{produceName.toUpperCase()}</h2>
-        <p>{price} kr</p>
-        <p>{inStock} in stock</p>
-        <button onClick={addToCartHandler} disabled={isInCart()}>
-          {isInCart() ? 'In Cart' : 'Add to Cart'}
-        </button>
+        <div className='img-container'>
+          <img src={imageUrl} alt='product' />
+        </div>
+        <div className='info-container'>
+          <h2>{produceName.toUpperCase()}</h2>
+          <p>{inStock}kg in stock</p>
+        </div>
+        <div className='add-to-cart-container'>
+          <h2>${price}</h2>
+          <button onClick={addToCartHandler} disabled={isInCart()}>
+            {isInCart() ? 'In Cart' : 'Add to Cart'}
+          </button>
+        </div>
       </StoreCardWrapper>
     </>
   );
@@ -72,32 +78,61 @@ function StoreCard({ id, imageUrl, produceName, weight, price, inStock }: Produc
 const StoreCardWrapper = styled.div`
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   width: 250px;
+  height: 350px;
   margin: auto;
   text-align: center;
   font-family: arial;
-  border: solid 2px #000;
-  border-radius: 8px;
+  border: solid 2px #ccc;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
 
-  img {
-    width: 100%;
-    height: 250px;
+  .img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 150px;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .info-container {
+    display: flex;
+    width: 80%;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .add-to-cart-container {
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+    align-items: center;
   }
 
   p {
     color: grey;
-    font-size: 22px;
+    font-size: 18px;
   }
 
   button {
     border: none;
     outline: 0;
-    padding: 12px;
+    padding: 10px;
     color: white;
-    background-color: #000;
+    background-color: #9bcd6a;
     text-align: center;
     cursor: pointer;
-    width: 100%;
-    font-size: 18px;
+    width: 50%;
+    font-size: 14px;
+    border-radius: 10px;
 
     &:hover {
       opacity: 0.7;

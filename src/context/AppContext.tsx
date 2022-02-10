@@ -8,13 +8,26 @@ function loadProducts() {
   if (localStorage.getItem('products')) {
     return JSON.parse(localStorage.getItem('products')!);
   }
-
   return productData;
 }
 
+function loadLoggedInUser() {
+  if (localStorage.getItem('isLoggedIn')) {
+    return JSON.parse(localStorage.getItem('isLoggedIn')!);
+  }
+  return false;
+}
+
+function loadLoggedInUsername() {
+  if (localStorage.getItem('loggedInUser')) {
+    return JSON.parse(localStorage.getItem('loggedInUser')!);
+  }
+  return '';
+}
+
 const initialState = {
-  isLoggedIn: false,
-  currentUser: '',
+  isLoggedIn: loadLoggedInUser(),
+  currentUser: loadLoggedInUsername(),
   initialProducts: loadProducts(),
   initialUser: userData,
   cart: getLocalCart(),

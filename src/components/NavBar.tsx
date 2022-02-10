@@ -1,27 +1,49 @@
 import styled from 'styled-components';
 import logo from '../images/planet-earth-logo.png';
-import { useLocation } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AppContext } from '../context/AppContext';
+import { FiShoppingCart } from 'react-icons/fi';
+import { BiStore } from 'react-icons/bi';
 
 function NavBar() {
-  const { state } = useContext(AppContext);
+  const { state, dispatch } = useContext(AppContext);
+  const test = state.cart;
   const { pathname } = useLocation();
   let navigate = useNavigate();
-
   const isLoggedIn = state.isLoggedIn;
+
+  const totalAmount = test.reduce((total: number, item: any) => {
+    return total + item.amount;
+  }, 0);
+
+  const logoutHandler = () => {
+    dispatch({ type: 'SET_LOGGED_IN' });
+    navigate('/');
+  };
 
   return (
     <NavBarWrapper pathname={pathname}>
-      <img className='logo' src={logo} alt='logo' />
-      <h1>The Nature Shop</h1>
+      <div className='logo-container'>
+        <img className='logo' src={logo} alt='logo' />
+        <h1>The Nature Shop</h1>
+      </div>
       {isLoggedIn ? (
-        <>
-          <button onClick={() => navigate('/cart')}>Cart</button>
-          <button onClick={() => navigate('/store')}>Store</button>
-          <button>Logout</button>
-        </>
+        <div className='button-container'>
+          {pathname === '/store' ? (
+            <button className='cart-btn' onClick={() => navigate('/cart')}>
+              <FiShoppingCart /> <p>{totalAmount >= 1 ? totalAmount : null}</p>
+            </button>
+          ) : null}
+          {pathname === '/cart' ? (
+            <button className='store-btn' onClick={() => navigate('/store')}>
+              <BiStore />
+            </button>
+          ) : null}
+          <button className='logout' onClick={logoutHandler}>
+            Logout
+          </button>
+        </div>
       ) : null}
     </NavBarWrapper>
   );
@@ -29,19 +51,75 @@ function NavBar() {
 
 const NavBarWrapper = styled.nav<{ pathname: string }>`
   min-height: 10vh;
-  padding-top: 2rem;
   color: #9bcd6a;
   font-size: 2rem;
-  background-color: #093545;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   font-family: 'Aldrich', sans-serif;
+
+  .logo-container {
+    margin-left: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-right: 2rem;
+    width: 300px;
+
+    .cart-btn,
+    .store-btn {
+      all: unset;
+      color: #000;
+      margin-right: 10px;
+      display: flex;
+      cursor: pointer;
+
+      p {
+        font-size: 1rem;
+      }
+
+      &:hover {
+        color: #9bcd6a;
+      }
+    }
+
+    .logout {
+      background-color: #9bcd6a;
+      border-radius: 12px;
+      border: 0;
+      box-sizing: border-box;
+      color: #eee;
+      font-size: 18px;
+      height: 50px;
+      text-align: center;
+      width: 6rem;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #85b654;
+      }
+    }
+  }
+
+  background: #fff;
+  ${(props) => {
+    if (props.pathname === '/')
+      return `
+            background-color: #093545;
+            justify-content: center;
+        `;
+  }}
 
   @media screen and (max-width: 440px) {
     font-size: 1.4rem;
   }
-
   .logo {
     padding-right: 1rem;
   }

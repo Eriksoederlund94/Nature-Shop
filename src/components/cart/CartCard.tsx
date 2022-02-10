@@ -18,7 +18,7 @@ function CartCard({ id, imageUrl, produceName, weight, price, inStock, amount }:
     }
 
     cartlocalState.map((item: CartItem) => {
-      if (item.id == id) {
+      if (item.id === id) {
         return {
           ...item,
           amount: item.amount++,
@@ -29,7 +29,7 @@ function CartCard({ id, imageUrl, produceName, weight, price, inStock, amount }:
     });
 
     productLocalState.map((item: ProductItem) => {
-      if (item.id == id) {
+      if (item.id === id) {
         return {
           ...item,
           inStock: item.inStock--,
@@ -83,7 +83,7 @@ function CartCard({ id, imageUrl, produceName, weight, price, inStock, amount }:
     }
 
     cartlocalState.map((item: CartItem) => {
-      if (item.id == id) {
+      if (item.id === id) {
         return {
           ...item,
           amount: item.amount--,
@@ -94,7 +94,7 @@ function CartCard({ id, imageUrl, produceName, weight, price, inStock, amount }:
     });
 
     productLocalState.map((item: ProductItem) => {
-      if (item.id == id) {
+      if (item.id === id) {
         return {
           ...item,
           inStock: item.inStock++,
@@ -124,7 +124,7 @@ function CartCard({ id, imageUrl, produceName, weight, price, inStock, amount }:
       <div className='name-container'>
         <h1>{produceName}</h1>
         <p>{weight}</p>
-        <p>{inStock} in stock</p>
+        <p>{inStock}kg in stock</p>
         <div className='counter-container'>
           <button className='decrement' onClick={decrementBtnHandler}>
             -
@@ -136,7 +136,7 @@ function CartCard({ id, imageUrl, produceName, weight, price, inStock, amount }:
         </div>
       </div>
       <div className='price-container'>
-        <p>{price}kr</p>
+        <p>${price}</p>
       </div>
     </CartItemWrapper>
   );

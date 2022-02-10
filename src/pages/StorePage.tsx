@@ -1,9 +1,17 @@
 import styled from 'styled-components';
+import { AppContext } from '../context/AppContext';
+import { useContext, useState, useEffect } from 'react';
 
 // Component
 import Store from '../components/store/Store';
 
 function StorePage() {
+  const { state } = useContext(AppContext);
+  const loggedIn = state.isLoggedIn;
+  const currentUser = state.currentUser;
+  localStorage.setItem('isLoggedIn', JSON.stringify(loggedIn));
+  localStorage.setItem('loggedInUser', JSON.stringify(currentUser));
+
   return (
     <StorePageWrapper>
       <Store />
@@ -25,7 +33,10 @@ const StorePageWrapper = styled.div`
   input {
     margin-top: 1rem;
     margin-bottom: 1rem;
-    padding: 0.5rem 1rem;
+    padding: 0.8rem 1.5rem;
+    border: 0;
+    background-color: #f0e9e9;
+    border-radius: 1.6rem;
   }
 `;
 

@@ -2,7 +2,6 @@ import { useContext, useState } from 'react';
 import StoreCard from './StoreCard';
 import { AppContext } from '../../context/AppContext';
 import styled from 'styled-components';
-import { FaSearch } from 'react-icons/fa';
 
 function Store() {
   const [query, setQuery] = useState('');

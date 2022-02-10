@@ -12,7 +12,7 @@ function CheckoutPage() {
 const CheckoutPageWrapper = styled.div`
   min-height: 80vh;
   min-width: 100%;
-  background-color: #093545;
+  background-color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
