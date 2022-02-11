@@ -1,25 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import StorePage from '../StorePage';
-import CheckoutPage from '../CheckoutPage';
-import NavBar from '../../components/NavBar';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import AppContextProvider from '../../context/AppContext';
 import userEvent from '@testing-library/user-event';
-import { MemoryRouter } from 'react-router-dom';
-
-/* const renderRoute = (ui: React.ReactNode) => {
-  window.history.pushState({}, '', '/store');
-  return render(
-    <BrowserRouter>
-      <AppContextProvider>
-        <NavBar />
-        <Routes>
-          <Route path='/store' element={ui} />
-        </Routes>
-      </AppContextProvider>
-    </BrowserRouter>
-  );
-}; */
 
 const MockStorePage = () => {
   return (
@@ -34,16 +17,6 @@ const MockStorePage = () => {
 const MockNavBar = () => {
   return <MockNavBar />;
 };
-
-/* const MockCheckoutPage = () => {
-  return (
-    <AppContextProvider>
-      <BrowserRouter>
-        <CheckoutPage />
-      </BrowserRouter>
-    </AppContextProvider>
-  );
-}; */
 
 describe('StorePage', () => {
   it('Renders without crashing', () => {
@@ -142,5 +115,13 @@ describe('StorePage', () => {
     userEvent.click(secondButtonElement);
 
     expect(paragrahElement).toHaveTextContent('17kg in stock');
+  });
+
+  it('Should render a productcard for all of the products in the store', () => {
+    render(<MockStorePage />);
+
+    const productCardElement = screen.getAllByTestId('product-card');
+
+    expect(productCardElement.length).toBe(9);
   });
 });

@@ -2,6 +2,8 @@ import { render, screen } from '@testing-library/react';
 import LoginPage from '../LoginPage';
 import { BrowserRouter } from 'react-router-dom';
 import AppContextProvider from '../../context/AppContext';
+import { userInfo } from 'os';
+import userEvent from '@testing-library/user-event';
 
 const MockLoginPage = () => {
   return (
@@ -64,5 +66,15 @@ describe('LoginPage', () => {
     const buttonElement = screen.getByRole('button');
 
     expect(buttonElement).toBeInTheDocument();
+  });
+
+  it('The input value equal the users typed input', () => {
+    render(<MockLoginPage />);
+
+    const inputUserElement = screen.getByPlaceholderText('Username');
+
+    userEvent.type(inputUserElement, 'User123');
+
+    expect(inputUserElement).toHaveValue('User123');
   });
 });

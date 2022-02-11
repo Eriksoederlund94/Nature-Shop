@@ -20,10 +20,9 @@ function StoreCard({ id, imageUrl, produceName, weight, price, inStock }: Produc
   }, [state.cart]);
 
   const addToCartHandler = () => {
-    let productId = id;
     let productArray = state.initialProducts;
     let cartArry = state.cart;
-    const addProduct = productArray.find((item: any) => item.id === productId)!;
+    const addProduct = productArray.find((item: any) => item.id === id)!;
 
     const cartItem: CartItem = { ...addProduct, amount: 1, inStock: inStock - 1 };
 
@@ -56,7 +55,7 @@ function StoreCard({ id, imageUrl, produceName, weight, price, inStock }: Produc
 
   return (
     <>
-      <StoreCardWrapper>
+      <StoreCardWrapper data-testid='product-card'>
         <div className='img-container'>
           <img src={imageUrl} alt='product' />
         </div>
