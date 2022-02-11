@@ -1,8 +1,146 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import StorePage from '../StorePage';
+import CheckoutPage from '../CheckoutPage';
+import NavBar from '../../components/NavBar';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import AppContextProvider from '../../context/AppContext';
+import userEvent from '@testing-library/user-event';
+import { MemoryRouter } from 'react-router-dom';
+
+/* const renderRoute = (ui: React.ReactNode) => {
+  window.history.pushState({}, '', '/store');
+  return render(
+    <BrowserRouter>
+      <AppContextProvider>
+        <NavBar />
+        <Routes>
+          <Route path='/store' element={ui} />
+        </Routes>
+      </AppContextProvider>
+    </BrowserRouter>
+  );
+}; */
+
+const MockStorePage = () => {
+  return (
+    <BrowserRouter>
+      <AppContextProvider>
+        <StorePage />
+      </AppContextProvider>
+    </BrowserRouter>
+  );
+};
+
+const MockNavBar = () => {
+  return <MockNavBar />;
+};
+
+/* const MockCheckoutPage = () => {
+  return (
+    <AppContextProvider>
+      <BrowserRouter>
+        <CheckoutPage />
+      </BrowserRouter>
+    </AppContextProvider>
+  );
+}; */
 
 describe('StorePage', () => {
   it('Renders without crashing', () => {
-    render(<StorePage />);
+    render(<MockStorePage />);
+  });
+
+  it('Renders a img on the card', () => {
+    render(<MockStorePage />);
+
+    const imageElements = screen.getAllByRole('img');
+
+    const firstImgElement = imageElements[0];
+
+    expect(firstImgElement).toBeInTheDocument();
+  });
+
+  it('Renders a heading with a productname', () => {
+    render(<MockStorePage />);
+
+    const headerElement = screen.getAllByRole('heading');
+
+    const firstHeaderElement = headerElement[0];
+
+    expect(firstHeaderElement).toBeInTheDocument();
+  });
+
+  it('Renders a paragrah with weight text', () => {
+    render(<MockStorePage />);
+
+    const paragrahElement = screen.getByText('10kg in stock');
+
+    expect(paragrahElement).toBeInTheDocument();
+  });
+
+  it('Renders a heading with  price text', () => {
+    render(<MockStorePage />);
+
+    const headingElement = screen.getByText('$12.02');
+
+    expect(headingElement).toBeInTheDocument();
+  });
+
+  it('Renders a add to cart btn crashing', () => {
+    render(<MockStorePage />);
+
+    const buttonElements = screen.getAllByRole('button', { name: 'Add to Cart' });
+
+    const firstButtonElement = buttonElements[0];
+
+    expect(firstButtonElement).toBeInTheDocument();
+  });
+
+  it('On click the text value of add to cart btn should be In Cart', () => {
+    render(<MockStorePage />);
+
+    const buttonElements = screen.getAllByRole('button', { name: 'Add to Cart' });
+
+    const firstButtonElement = buttonElements[0];
+
+    userEvent.click(firstButtonElement);
+
+    expect(firstButtonElement).toHaveTextContent('In Cart');
+  });
+
+  it('On click the text value of add to cart btn should not be In Carts', () => {
+    render(<MockStorePage />);
+
+    const buttonElements = screen.getAllByRole('button', { name: 'Add to Cart' });
+
+    const firstButtonElement = buttonElements[0];
+
+    userEvent.click(firstButtonElement);
+
+    expect(firstButtonElement).not.toHaveTextContent('In Carts');
+  });
+
+  it('On click the text value of add to cart btn should not be In Carts', () => {
+    render(<MockStorePage />);
+
+    const buttonElements = screen.getAllByRole('button', { name: 'Add to Cart' });
+
+    const firstButtonElement = buttonElements[0];
+
+    userEvent.click(firstButtonElement);
+
+    expect(firstButtonElement).not.toHaveTextContent('In Carts');
+  });
+
+  it('Item in stock should change when the add to cart button is clicked', () => {
+    render(<MockStorePage />);
+
+    const paragrahElement = screen.getByText('18kg in stock');
+    const buttonElements = screen.getAllByRole('button');
+    const secondButtonElement = buttonElements[1];
+
+    userEvent.click(secondButtonElement);
+
+    expect(paragrahElement).toHaveTextContent('17kg in stock');
   });
 });

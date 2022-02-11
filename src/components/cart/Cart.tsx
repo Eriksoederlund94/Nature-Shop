@@ -35,6 +35,7 @@ const CartWrapper = styled.div`
   justify-content: center;
   flex-direction: column;
   overflow-y: scroll;
+  overflow-y: hidden;
   margin-top: 1rem;
 `;
 

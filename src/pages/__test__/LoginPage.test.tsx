@@ -1,13 +1,25 @@
 import { render, screen } from '@testing-library/react';
 import LoginPage from '../LoginPage';
+import { BrowserRouter } from 'react-router-dom';
+import AppContextProvider from '../../context/AppContext';
+
+const MockLoginPage = () => {
+  return (
+    <AppContextProvider>
+      <BrowserRouter>
+        <LoginPage />
+      </BrowserRouter>
+    </AppContextProvider>
+  );
+};
 
 describe('LoginPage', () => {
   it('Renders without crashing', () => {
-    render(<LoginPage />);
+    render(<MockLoginPage />);
   });
 
   it('Renders a heading with the text Sign in', () => {
-    render(<LoginPage />);
+    render(<MockLoginPage />);
 
     const headingElement = screen.getByRole('heading');
 
@@ -15,7 +27,7 @@ describe('LoginPage', () => {
   });
 
   it('Renders a paragraf with the text Sign in and start shopping!', () => {
-    render(<LoginPage />);
+    render(<MockLoginPage />);
 
     const paragrafElement = screen.getByText('Sign in and start shopping!');
 
@@ -23,23 +35,23 @@ describe('LoginPage', () => {
   });
 
   it('Renders a form', () => {
-    render(<LoginPage />);
+    render(<MockLoginPage />);
 
     const formElement = screen.getByTitle('login-form');
 
     expect(formElement).toBeInTheDocument();
   });
 
-  it('Renders an inpufield with the placeholder text (Login)', () => {
-    render(<LoginPage />);
+  it('Renders an inpufield with the placeholder text (Username)', () => {
+    render(<MockLoginPage />);
 
-    const inputElement = screen.getByPlaceholderText('Login');
+    const inputElement = screen.getByPlaceholderText('Username');
 
     expect(inputElement).toBeInTheDocument();
   });
 
   it('Renders an inpufield with the placeholder text (Password)', () => {
-    render(<LoginPage />);
+    render(<MockLoginPage />);
 
     const inputElement = screen.getByPlaceholderText('Password');
 
@@ -47,7 +59,7 @@ describe('LoginPage', () => {
   });
 
   it('Renders a button with the text (Login)', () => {
-    render(<LoginPage />);
+    render(<MockLoginPage />);
 
     const buttonElement = screen.getByRole('button');
 

@@ -5,6 +5,7 @@ import { useContext } from 'react';
 import { AppContext } from '../context/AppContext';
 import { FiShoppingCart } from 'react-icons/fi';
 import { BiStore } from 'react-icons/bi';
+import { FiUser } from 'react-icons/fi';
 
 function NavBar() {
   const { state, dispatch } = useContext(AppContext);
@@ -40,6 +41,12 @@ function NavBar() {
               <BiStore />
             </button>
           ) : null}
+          <div className='user-container'>
+            <h1>
+              <FiUser />
+            </h1>
+            <h6>:{state.currentUser}</h6>
+          </div>
           <button className='logout' onClick={logoutHandler}>
             Logout
           </button>
@@ -63,11 +70,20 @@ const NavBarWrapper = styled.nav<{ pathname: string }>`
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @media screen and (max-width: 440px) {
+      h1 {
+        font-size: 1rem;
+      }
+    }
+    .logo {
+      padding-right: 1rem;
+    }
   }
 
   .button-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
 
     margin-right: 2rem;
@@ -87,6 +103,17 @@ const NavBarWrapper = styled.nav<{ pathname: string }>`
 
       &:hover {
         color: #9bcd6a;
+      }
+    }
+
+    .user-container {
+      display: flex;
+      justify-content: flex-end;
+      color: #000;
+
+      h6 {
+        margin-top: 0.5rem;
+        text-align: center;
       }
     }
 
@@ -116,13 +143,6 @@ const NavBarWrapper = styled.nav<{ pathname: string }>`
             justify-content: center;
         `;
   }}
-
-  @media screen and (max-width: 440px) {
-    font-size: 1.4rem;
-  }
-  .logo {
-    padding-right: 1rem;
-  }
 `;
 
 export default NavBar;
