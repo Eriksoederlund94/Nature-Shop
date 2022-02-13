@@ -11,7 +11,7 @@ import cherry from '../images/cherry.png';
 
 export const productData: ProductItem[] = [
   {
-    id: '1',
+    id: '0d924ac5-8888-4917-839f-66425278bcb3',
     imageUrl: apple,
     produceName: 'apples',
     weight: '1kg',
@@ -19,7 +19,7 @@ export const productData: ProductItem[] = [
     inStock: 10,
   },
   {
-    id: '2',
+    id: '5957bc63-1bef-4aaf-8997-808be8100b4d',
     imageUrl: banana,
     produceName: 'bananas',
     weight: '1kg',
@@ -27,7 +27,7 @@ export const productData: ProductItem[] = [
     inStock: 18,
   },
   {
-    id: '3',
+    id: '522a57bd-bbed-46d8-abc2-993bd3699ed5',
     imageUrl: orange,
     produceName: 'oranges',
     weight: '1kg',
@@ -35,7 +35,7 @@ export const productData: ProductItem[] = [
     inStock: 40,
   },
   {
-    id: '4',
+    id: '13f4524f-c726-40bf-b145-f652587487c0',
     imageUrl: cucumber,
     produceName: 'cucumbers',
     weight: '1kg',
@@ -43,7 +43,7 @@ export const productData: ProductItem[] = [
     inStock: 80,
   },
   {
-    id: '5',
+    id: '05e7400d-654e-49aa-9e91-f3f4994059f1',
     imageUrl: ginger,
     produceName: 'ginger',
     weight: '1kg',
@@ -51,7 +51,7 @@ export const productData: ProductItem[] = [
     inStock: 17,
   },
   {
-    id: '6',
+    id: 'bd189f0b-6fb8-40f3-beae-d1c0219a08cc',
     imageUrl: kiwi,
     produceName: 'kiwi',
     weight: '1kg',
@@ -59,7 +59,7 @@ export const productData: ProductItem[] = [
     inStock: 44,
   },
   {
-    id: '7',
+    id: '1fae360f-980f-4f30-8ead-73d3b7365d49',
     imageUrl: melon,
     produceName: 'melon',
     weight: '1kg',
@@ -67,7 +67,7 @@ export const productData: ProductItem[] = [
     inStock: 64,
   },
   {
-    id: '8',
+    id: '5f0c51ef-890d-4742-832f-ce75c8882db1',
     imageUrl: pepper,
     produceName: 'red pepper',
     weight: '1kg',
@@ -75,7 +75,7 @@ export const productData: ProductItem[] = [
     inStock: 36,
   },
   {
-    id: '9',
+    id: 'fd97e6a2-af73-4921-a3d6-621fcc3a82bf',
     imageUrl: cherry,
     produceName: 'cherry',
     weight: '1kg',

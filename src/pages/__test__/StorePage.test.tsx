@@ -124,4 +124,34 @@ describe('StorePage', () => {
 
     expect(productCardElement.length).toBe(9);
   });
+
+  it('Should render an inputfield', () => {
+    render(<MockStorePage />);
+
+    const inputSearchElement = screen.getByPlaceholderText('Search produce');
+
+    expect(inputSearchElement).toBeInTheDocument();
+  });
+
+  it('The inputfields value should match the user input', () => {
+    render(<MockStorePage />);
+
+    const inputSearchElement = screen.getByPlaceholderText('Search produce');
+
+    userEvent.type(inputSearchElement, 'Apple');
+
+    expect(inputSearchElement).toHaveValue('Apple');
+  });
+
+  it('The render store products that match the userinput', () => {
+    render(<MockStorePage />);
+
+    const inputSearchElement = screen.getByPlaceholderText('Search produce');
+
+    userEvent.type(inputSearchElement, 'a');
+
+    const productCardElement = screen.getAllByTestId('product-card');
+
+    expect(productCardElement.length).toBe(3);
+  });
 });

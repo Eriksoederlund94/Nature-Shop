@@ -6,6 +6,8 @@ import styled from 'styled-components';
 import { AppContext } from '../../context/AppContext';
 import { getLocalCart } from '../../utils/helpers';
 
+import DeleteAllProductsBtn from './DeleteAllProductsBtn';
+
 function CartCard({ id, imageUrl, produceName, weight, price, inStock, amount }: CartItem) {
   const { dispatch } = useContext(AppContext);
 
@@ -136,6 +138,7 @@ function CartCard({ id, imageUrl, produceName, weight, price, inStock, amount }:
         </div>
       </div>
       <div className='price-container'>
+        <DeleteAllProductsBtn id={id} />
         <p>${price}</p>
       </div>
     </CartItemWrapper>

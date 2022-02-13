@@ -27,7 +27,7 @@ function NavBar() {
     <NavBarWrapper pathname={pathname}>
       <div className='logo-container'>
         <img className='logo' src={logo} alt='logo' />
-        <h1>The Nature Shop</h1>
+        <h1 className='header-text'>The Nature Shop</h1>
       </div>
       {isLoggedIn ? (
         <div className='button-container'>
@@ -71,13 +71,14 @@ const NavBarWrapper = styled.nav<{ pathname: string }>`
     justify-content: center;
     align-items: center;
 
-    @media screen and (max-width: 440px) {
-      h1 {
-        font-size: 1rem;
-      }
-    }
     .logo {
       padding-right: 1rem;
+    }
+
+    @media screen and (max-width: 500px) {
+      .header-text {
+        font-size: 1.5rem;
+      }
     }
   }
 

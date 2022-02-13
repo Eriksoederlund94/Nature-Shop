@@ -2,33 +2,12 @@ import { createContext, useEffect, useReducer } from 'react';
 import { AppAction, AppReducer } from './AppReducer';
 import { productData } from '../data/productsData';
 import { userData } from '../data/userData';
-import { getLocalCart } from '../utils/helpers';
-
-function loadProducts() {
-  if (localStorage.getItem('products')) {
-    return JSON.parse(localStorage.getItem('products')!);
-  }
-  return productData;
-}
-
-function loadLoggedInUser() {
-  if (localStorage.getItem('isLoggedIn')) {
-    return JSON.parse(localStorage.getItem('isLoggedIn')!);
-  }
-  return false;
-}
-
-function loadLoggedInUsername() {
-  if (localStorage.getItem('loggedInUser')) {
-    return JSON.parse(localStorage.getItem('loggedInUser')!);
-  }
-  return '';
-}
+import { getLocalCart, loadLoggedInUser, loadLoggedInUsername, loadProducts } from '../utils/helpers';
 
 const initialState = {
   isLoggedIn: loadLoggedInUser(),
   currentUser: loadLoggedInUsername(),
-  initialProducts: loadProducts(),
+  initialProducts: loadProducts(productData),
   initialUser: userData,
   cart: getLocalCart(),
 };

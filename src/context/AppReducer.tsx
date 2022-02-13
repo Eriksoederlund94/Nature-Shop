@@ -8,7 +8,7 @@ interface AppState {
 
 export type AppAction =
   | { type: 'SET_LOGGED_IN' }
-  | { type: 'SET_CURRENT_USER'; payload: any }
+  | { type: 'SET_CURRENT_USER'; payload: string }
   | { type: 'SET_INITIAL_PRODUCTS'; payload: any }
   | { type: 'SET_INITIAL_USER'; payload: any }
   | { type: 'SET_CART'; payload: any }
@@ -31,6 +31,7 @@ export function AppReducer(state: AppState, action: AppAction) {
         ...state,
         initialProducts: action.payload,
       };
+
     case 'SET_INITIAL_USER':
       return {
         ...state,
