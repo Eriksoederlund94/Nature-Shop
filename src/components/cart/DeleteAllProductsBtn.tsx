@@ -61,6 +61,12 @@ function DeleteAllProductsBtn({ id }: Props) {
 const DeleteAllProductsBtnWrapper = styled.button`
   all: unset;
   cursor: pointer;
+  font-size: 1.5rem;
+  color: #ccc;
+
+  &:hover {
+    color: red;
+  }
 `;
 
 export default DeleteAllProductsBtn;

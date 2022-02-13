@@ -30,10 +30,10 @@ describe('StorePage', () => {
     render(<MockCheckoutPage />);
   });
 
-  it('Renders a heading with the text your (Your Cart is empty") if the cart is empty', () => {
+  it('Renders a heading with the text your (Your cart is currently empty.) if the cart is empty', () => {
     render(<MockCheckoutPage />);
 
-    const headingElement = screen.getByRole('heading', { name: 'Your Cart is empty' });
+    const headingElement = screen.getByRole('heading', { name: 'Your cart is currently empty.' });
 
     expect(headingElement).toBeInTheDocument();
   });

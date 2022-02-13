@@ -24,7 +24,7 @@ function StoreCard({ id, imageUrl, produceName, weight, price, inStock }: Produc
           <p>{inStock}kg in stock</p>
         </div>
         <div className='add-to-cart-container'>
-          <h2>${price}</h2>
+          <h3>${price}/kg</h3>
           <AddToCartBtn id={id} inStock={inStock} setToogle={setToogle} />
         </div>
       </StoreCardWrapper>

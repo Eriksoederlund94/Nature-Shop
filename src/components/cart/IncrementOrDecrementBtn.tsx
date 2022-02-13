@@ -15,8 +15,8 @@ interface Props {
 function IncrementOrDecrementBtn({ id, amount, inStock, option }: Props) {
   const { dispatch } = useContext(AppContext);
 
-  let cartlocalState = getLocalCart();
-  let productLocalState = JSON.parse(localStorage.getItem('products')!);
+  let localStorageCart = getLocalCart();
+  let localStorageProducts = JSON.parse(localStorage.getItem('products')!);
 
   const buttonHandler = () => {
     if (option === 'increase' && inStock === 0) {
@@ -24,7 +24,7 @@ function IncrementOrDecrementBtn({ id, amount, inStock, option }: Props) {
     }
 
     if (option === 'decrease' && amount <= 1) {
-      const newCart = cartlocalState.filter((item: CartItem) => item.id !== id);
+      const newCart = localStorageCart.filter((item: CartItem) => item.id !== id);
 
       localStorage.setItem('cart', JSON.stringify(newCart));
 
@@ -33,7 +33,7 @@ function IncrementOrDecrementBtn({ id, amount, inStock, option }: Props) {
         payload: newCart,
       });
 
-      productLocalState.map((item: ProductItem) => {
+      localStorageProducts.map((item: ProductItem) => {
         if (item.id === id) {
           return {
             ...item,
@@ -44,17 +44,17 @@ function IncrementOrDecrementBtn({ id, amount, inStock, option }: Props) {
         return item;
       });
 
-      localStorage.setItem('products', JSON.stringify(productLocalState));
+      localStorage.setItem('products', JSON.stringify(localStorageProducts));
 
       dispatch({
         type: 'SET_INITIAL_PRODUCTS',
-        payload: productLocalState,
+        payload: localStorageProducts,
       });
 
       return;
     }
 
-    cartlocalState.map((item: CartItem) => {
+    localStorageCart.map((item: CartItem) => {
       if (item.id === id) {
         if (option === 'increase') {
           return {
@@ -76,7 +76,7 @@ function IncrementOrDecrementBtn({ id, amount, inStock, option }: Props) {
       return item;
     });
 
-    productLocalState.map((item: ProductItem) => {
+    localStorageProducts.map((item: ProductItem) => {
       if (item.id === id) {
         if (option === 'increase') {
           return {
@@ -94,27 +94,45 @@ function IncrementOrDecrementBtn({ id, amount, inStock, option }: Props) {
       return item;
     });
 
-    localStorage.setItem('cart', JSON.stringify(cartlocalState));
-    localStorage.setItem('products', JSON.stringify(productLocalState));
+    localStorage.setItem('cart', JSON.stringify(localStorageCart));
+    localStorage.setItem('products', JSON.stringify(localStorageProducts));
 
     dispatch({
       type: 'SET_CART_AMOUNT',
-      payload: cartlocalState,
+      payload: localStorageCart,
     });
 
     dispatch({
       type: 'SET_INITIAL_PRODUCTS',
-      payload: productLocalState,
+      payload: localStorageProducts,
     });
   };
 
   return (
-    <IncrementOrDecrementBtnWrapper onClick={buttonHandler}>
+    <IncrementOrDecrementBtnWrapper styleProp={option} onClick={buttonHandler}>
       {option === 'increase' ? '+' : '-'}
     </IncrementOrDecrementBtnWrapper>
   );
 }
 
-const IncrementOrDecrementBtnWrapper = styled.button``;
+const IncrementOrDecrementBtnWrapper = styled.button<{ styleProp: string }>`
+  all: unset;
+  border: solid 2px #ccc;
+  padding: 0.5rem 0.8rem;
+  margin-top: 0.3rem;
+  border-radius: 10px;
+  cursor: pointer;
+
+  &:hover {
+    color: red;
+  }
+
+  ${(props) => {
+    if (props.styleProp === 'increase')
+      return `
+           &:hover {color: green;}
+        `;
+  }}
+`;
 
 export default IncrementOrDecrementBtn;

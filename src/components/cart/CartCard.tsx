@@ -1,193 +1,83 @@
-import { useContext } from 'react';
 import { CartItem } from '../../interfaces/cartData.interface';
-import { ProductItem } from '../../interfaces/productsData.interface';
-
 import styled from 'styled-components';
-import { AppContext } from '../../context/AppContext';
-import { getLocalCart } from '../../utils/helpers';
-
 import DeleteAllProductsBtn from './DeleteAllProductsBtn';
 import IncrementOrDecrementBtn from './IncrementOrDecrementBtn';
 
 function CartCard({ id, imageUrl, produceName, weight, price, inStock, amount }: CartItem) {
-  const { dispatch } = useContext(AppContext);
-
-  let cartlocalState = getLocalCart();
-  let productLocalState = JSON.parse(localStorage.getItem('products')!);
-
-  const incrementBtnHandler = () => {
-    if (inStock === 0) {
-      return;
-    }
-
-    cartlocalState.map((item: CartItem) => {
-      if (item.id === id) {
-        return {
-          ...item,
-          amount: item.amount++,
-          inStock: item.inStock--,
-        };
-      }
-      return item;
-    });
-
-    productLocalState.map((item: ProductItem) => {
-      if (item.id === id) {
-        return {
-          ...item,
-          inStock: item.inStock--,
-        };
-      }
-      return item;
-    });
-    localStorage.setItem('cart', JSON.stringify(cartlocalState));
-    localStorage.setItem('products', JSON.stringify(productLocalState));
-
-    dispatch({
-      type: 'SET_CART_AMOUNT',
-      payload: cartlocalState,
-    });
-
-    dispatch({
-      type: 'SET_INITIAL_PRODUCTS',
-      payload: productLocalState,
-    });
-  };
-
-  const decrementBtnHandler = () => {
-    if (amount === 1) {
-      const newCart = cartlocalState.filter((item: CartItem) => item.id !== id);
-
-      localStorage.setItem('cart', JSON.stringify(newCart));
-
-      dispatch({
-        type: 'SET_CART_AMOUNT',
-        payload: newCart,
-      });
-
-      productLocalState.map((item: ProductItem) => {
-        if (item.id === id) {
-          return {
-            ...item,
-            inStock: item.inStock++,
-          };
-        }
-        return item;
-      });
-
-      localStorage.setItem('products', JSON.stringify(productLocalState));
-
-      dispatch({
-        type: 'SET_INITIAL_PRODUCTS',
-        payload: productLocalState,
-      });
-
-      return;
-    }
-
-    cartlocalState.map((item: CartItem) => {
-      if (item.id === id) {
-        return {
-          ...item,
-          amount: item.amount--,
-          inStock: item.inStock++,
-        };
-      }
-      return item;
-    });
-
-    productLocalState.map((item: ProductItem) => {
-      if (item.id === id) {
-        return {
-          ...item,
-          inStock: item.inStock++,
-        };
-      }
-      return item;
-    });
-
-    dispatch({
-      type: 'SET_CART_AMOUNT',
-      payload: cartlocalState,
-    });
-
-    localStorage.setItem('cart', JSON.stringify(cartlocalState));
-    localStorage.setItem('products', JSON.stringify(productLocalState));
-
-    dispatch({
-      type: 'SET_INITIAL_PRODUCTS',
-      payload: productLocalState,
-    });
-  };
-
   return (
     <CartItemWrapper>
-      <div className='img-container'>
-        <img src={imageUrl} alt='' />
-      </div>
-      <div className='name-container'>
-        <h1>{produceName}</h1>
-        <p>{weight}</p>
-        <p>{inStock}kg in stock</p>
-        <div className='counter-container'>
-          <button className='decrement' onClick={decrementBtnHandler}>
-            -
-          </button>
-          <IncrementOrDecrementBtn id={id} amount={amount} inStock={inStock} option={'decrease'} />
-          <p>{amount}</p>
-          <IncrementOrDecrementBtn id={id} amount={amount} inStock={inStock} option={'increase'} />
-          <button className='increment' onClick={incrementBtnHandler}>
-            +
-          </button>
+      <div className='cart-item-container'>
+        <div className='img-container'>
+          <img src={imageUrl} alt='' />
+        </div>
+        <div className='name-container'>
+          <h1>{produceName.toUpperCase()}</h1>
+          <p>{weight}</p>
+          <p>{inStock}kg in stock</p>
+          <div className='counter-container'>
+            <IncrementOrDecrementBtn id={id} amount={amount} inStock={inStock} option={'decrease'} />
+            <p>{amount}</p>
+            <IncrementOrDecrementBtn id={id} amount={amount} inStock={inStock} option={'increase'} />
+          </div>
+        </div>
+        <div className='price-container'>
+          <DeleteAllProductsBtn id={id} />
+          <h1>${price}/kg</h1>
         </div>
       </div>
-      <div className='price-container'>
-        <DeleteAllProductsBtn id={id} />
-        <p>${price}</p>
-      </div>
+      <hr className='solid' />
     </CartItemWrapper>
   );
 }
 
 const CartItemWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 600px;
-  padding: 2rem;
-
-  .counter-container {
-    display: flex;
+  hr.solid {
+    width: auto;
+    border: 1px solid #ccc;
   }
 
-  .name-container {
-    width: 180px;
-  }
-
-  .counter-container {
+  .cart-item-container {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    width: 600px;
+    padding: 1rem;
+    margin: 0.5rem;
 
-    button {
-      all: unset;
-      border: solid 2px #ccc;
-      padding: 0.5rem 0.8rem;
-      border-radius: 10px;
-      cursor: pointer;
+    h1 {
+      font-size: 1.2rem;
     }
 
-    .decrement:hover {
-      color: red;
+    h1,
+    p {
+      padding-bottom: 0.2rem;
     }
 
-    .increment:hover {
-      color: green;
+    .counter-container {
+      display: flex;
     }
-  }
 
-  img {
-    width: 100px;
+    .name-container {
+      width: 180px;
+    }
+
+    .counter-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+    }
+
+    .price-container {
+      min-height: 100px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      flex-direction: column;
+    }
+
+    img {
+      width: 100px;
+    }
   }
 `;
 

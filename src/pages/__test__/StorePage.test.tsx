@@ -54,7 +54,7 @@ describe('StorePage', () => {
   it('Renders a heading with  price text', () => {
     render(<MockStorePage />);
 
-    const headingElement = screen.getByText('$12.02');
+    const headingElement = screen.getByText('$12.02/kg');
 
     expect(headingElement).toBeInTheDocument();
   });
