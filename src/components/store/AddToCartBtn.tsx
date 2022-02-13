@@ -21,8 +21,8 @@ function AddToCartBtn({ id, inStock, setToogle }: Props) {
   };
 
   const addToCartHandler = () => {
-    let productArray = state.initialProducts;
-    let cartArry = state.cart;
+    let productArray = state && state?.initialProducts;
+    let cartArry = state && state?.cart;
     const addProduct = productArray.find((item: any) => item.id === id)!;
 
     const cartItem: CartItem = { ...addProduct, amount: 1, inStock: inStock - 1 };

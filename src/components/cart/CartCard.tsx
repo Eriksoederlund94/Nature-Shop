@@ -7,6 +7,7 @@ import { AppContext } from '../../context/AppContext';
 import { getLocalCart } from '../../utils/helpers';
 
 import DeleteAllProductsBtn from './DeleteAllProductsBtn';
+import IncrementOrDecrementBtn from './IncrementOrDecrementBtn';
 
 function CartCard({ id, imageUrl, produceName, weight, price, inStock, amount }: CartItem) {
   const { dispatch } = useContext(AppContext);
@@ -55,7 +56,7 @@ function CartCard({ id, imageUrl, produceName, weight, price, inStock, amount }:
 
   const decrementBtnHandler = () => {
     if (amount === 1) {
-      const newCart = cartlocalState.filter((item: any) => item.id !== id);
+      const newCart = cartlocalState.filter((item: CartItem) => item.id !== id);
 
       localStorage.setItem('cart', JSON.stringify(newCart));
 
@@ -64,7 +65,7 @@ function CartCard({ id, imageUrl, produceName, weight, price, inStock, amount }:
         payload: newCart,
       });
 
-      productLocalState.map((item: any) => {
+      productLocalState.map((item: ProductItem) => {
         if (item.id === id) {
           return {
             ...item,
@@ -109,6 +110,7 @@ function CartCard({ id, imageUrl, produceName, weight, price, inStock, amount }:
       type: 'SET_CART_AMOUNT',
       payload: cartlocalState,
     });
+
     localStorage.setItem('cart', JSON.stringify(cartlocalState));
     localStorage.setItem('products', JSON.stringify(productLocalState));
 
@@ -131,7 +133,9 @@ function CartCard({ id, imageUrl, produceName, weight, price, inStock, amount }:
           <button className='decrement' onClick={decrementBtnHandler}>
             -
           </button>
+          <IncrementOrDecrementBtn id={id} amount={amount} inStock={inStock} option={'decrease'} />
           <p>{amount}</p>
+          <IncrementOrDecrementBtn id={id} amount={amount} inStock={inStock} option={'increase'} />
           <button className='increment' onClick={incrementBtnHandler}>
             +
           </button>
