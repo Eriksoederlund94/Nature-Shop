@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { AppContext } from '../context/AppContext';
-import { useContext, useState, useEffect } from 'react';
+import { useContext } from 'react';
 
 // Component
 import Store from '../components/store/Store';
@@ -22,7 +22,7 @@ function StorePage() {
 const StorePageWrapper = styled.div`
   min-height: 80vh;
   min-width: 100%;
-  background-color: #fff;
+  background-color: whitesmoke;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,6 +37,7 @@ const StorePageWrapper = styled.div`
     border: 0;
     background-color: #f0e9e9;
     border-radius: 1.6rem;
+    width: 16rem;
   }
 `;
 

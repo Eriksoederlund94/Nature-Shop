@@ -3,6 +3,7 @@ import StorePage from '../StorePage';
 import { BrowserRouter } from 'react-router-dom';
 import AppContextProvider from '../../context/AppContext';
 import userEvent from '@testing-library/user-event';
+import { productData } from '../../data/productsData';
 
 const MockStorePage = () => {
   return (
@@ -122,7 +123,7 @@ describe('StorePage', () => {
 
     const productCardElement = screen.getAllByTestId('product-card');
 
-    expect(productCardElement.length).toBe(9);
+    expect(productCardElement.length).toBe(productData.length);
   });
 
   it('Should render an inputfield', () => {
@@ -148,10 +149,10 @@ describe('StorePage', () => {
 
     const inputSearchElement = screen.getByPlaceholderText('Search produce');
 
-    userEvent.type(inputSearchElement, 'a');
+    userEvent.type(inputSearchElement, 'APPLES');
 
     const productCardElement = screen.getAllByTestId('product-card');
 
-    expect(productCardElement.length).toBe(3);
+    expect(productCardElement.length).toBe(1);
   });
 });

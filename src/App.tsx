@@ -9,6 +9,7 @@ import Footer from './components/Footer';
 import LoginPage from './pages/LoginPage';
 import StorePage from './pages/StorePage';
 import CheckoutPage from './pages/CheckoutPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 import { useContext } from 'react';
 import { AppContext } from './context/AppContext';
@@ -26,9 +27,12 @@ function App() {
           <Route path='/' element={state.isLoggedIn ? <Navigate to='store' replace /> : <LoginPage />} />
           <Route path='/store' element={!state.isLoggedIn ? <Navigate to='/' replace /> : <StorePage />} />
           <Route path='/cart' element={!state.isLoggedIn ? <Navigate to='/' replace /> : <CheckoutPage />} />
+          <Route path='*' element={<NotFoundPage />} />
         </Routes>
       </main>
-      <Footer />
+      <footer>
+        <Footer />
+      </footer>
     </div>
   );
 }

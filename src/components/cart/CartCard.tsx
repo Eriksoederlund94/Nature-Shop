@@ -2,13 +2,17 @@ import { CartItem } from '../../interfaces/cartData.interface';
 import styled from 'styled-components';
 import DeleteAllProductsBtn from './DeleteAllProductsBtn';
 import IncrementOrDecrementBtn from './IncrementOrDecrementBtn';
+import useWindowSize from '../../hooks/useWindowSize';
 
 function CartCard({ id, imageUrl, produceName, weight, price, inStock, amount }: CartItem) {
+  const windowSize = useWindowSize();
+
   return (
     <CartItemWrapper>
       <div className='cart-item-container'>
         <div className='img-container'>
-          <img src={imageUrl} alt='' />
+          {windowSize.width <= 750 ? <DeleteAllProductsBtn id={id} /> : null}
+          <img src={imageUrl} alt='product' />
         </div>
         <div className='name-container'>
           <h1>{produceName.toUpperCase()}</h1>
@@ -21,7 +25,7 @@ function CartCard({ id, imageUrl, produceName, weight, price, inStock, amount }:
           </div>
         </div>
         <div className='price-container'>
-          <DeleteAllProductsBtn id={id} />
+          {windowSize.width >= 750 ? <DeleteAllProductsBtn id={id} /> : null}
           <h1>${price}/kg</h1>
         </div>
       </div>
@@ -31,6 +35,7 @@ function CartCard({ id, imageUrl, produceName, weight, price, inStock, amount }:
 }
 
 const CartItemWrapper = styled.div`
+  overflow: hidden;
   hr.solid {
     width: auto;
     border: 1px solid #ccc;
@@ -44,6 +49,21 @@ const CartItemWrapper = styled.div`
     padding: 1rem;
     margin: 0.5rem;
 
+    @media screen and (max-width: 750px) {
+      flex-direction: column;
+      width: 250px;
+      .img-container {
+        display: flex;
+        align-items: flex-end;
+        flex-direction: column;
+      }
+      .name-container {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+      }
+    }
+
     h1 {
       font-size: 1.2rem;
     }
@@ -51,10 +71,6 @@ const CartItemWrapper = styled.div`
     h1,
     p {
       padding-bottom: 0.2rem;
-    }
-
-    .counter-container {
-      display: flex;
     }
 
     .name-container {
@@ -65,6 +81,7 @@ const CartItemWrapper = styled.div`
       display: flex;
       align-items: center;
       justify-content: space-evenly;
+      width: 180px;
     }
 
     .price-container {

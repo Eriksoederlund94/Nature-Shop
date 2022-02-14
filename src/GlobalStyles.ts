@@ -11,7 +11,11 @@ const GlobalStyle = createGlobalStyle`
 body{
   font-family: 'Lexend Deca', sans-serif;
   font-size: 16px;
+  background-color: whitesmoke;
 }
+
+
+
 
 
 `;

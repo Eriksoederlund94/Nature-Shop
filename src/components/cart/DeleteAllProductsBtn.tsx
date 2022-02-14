@@ -36,7 +36,6 @@ function DeleteAllProductsBtn({ id }: Props) {
           inStock: item.inStock + resetStockNumber,
         };
       }
-
       return item;
     });
 

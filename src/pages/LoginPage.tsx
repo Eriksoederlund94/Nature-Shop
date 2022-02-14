@@ -30,6 +30,7 @@ function LoginPage() {
         });
       }
     }
+
     setErrorMessage('Wrong username or password!');
   };
 
@@ -72,6 +73,7 @@ const LoginPageWrapper = styled.div`
     @keyframes blinker {
       50% {
         opacity: 0;
+        color: red;
       }
     }
 

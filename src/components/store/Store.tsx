@@ -21,6 +21,7 @@ function Store() {
   return (
     <>
       <input className='input' onChange={(e) => setQuery(e.target.value)} type='text' placeholder='Search produce' />
+      {filteredProducts.length === 0 ? <h1>Sorry, no produce match your search.</h1> : null}
       <StoreWrapper>
         {filteredProducts.map((products: any) => (
           <StoreCard key={products.id} {...products} />

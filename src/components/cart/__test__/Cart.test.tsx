@@ -2,19 +2,26 @@ import { render, screen } from '@testing-library/react';
 import CartCard from '../CartCard';
 import { BrowserRouter } from 'react-router-dom';
 import AppContextProvider from '../../../context/AppContext';
-import { getLocalCart } from '../../../utils/helpers';
 import CheckoutPage from '../../../pages/CheckoutPage';
 import StorePage from '../../../pages/StorePage';
 
 import userEvent from '@testing-library/user-event';
 
-let localStorageCart = getLocalCart();
+const mockCartItem = {
+  id: '0d924ac5-8888-4917-839f-66425278bcb3',
+  imageUrl: 'apple-img',
+  produceName: 'apples',
+  weight: '1kg',
+  price: 5.46,
+  inStock: 10,
+  amount: 1,
+};
 
 const MockCartComponent = () => {
   return (
     <AppContextProvider>
       <BrowserRouter>
-        <CartCard {...localStorageCart} />
+        <CartCard {...mockCartItem} />
       </BrowserRouter>
     </AppContextProvider>
   );
@@ -41,30 +48,19 @@ const MockStorePage = () => {
 };
 
 describe('Cart', () => {
-  /*   it('Renders product', () => {
-    render(<MockCartComponent />);
-
-    const headingElement = screen.getByRole('heading', { name: 'APPLES' });
-
-    expect(headingElement).toBeInTheDocument();
-  }); */
-  it('Should show the total sum of a purchase', () => {
+  it('Cart item buttons should render if the cart is not empty', () => {
     render(<MockStorePage />);
 
     const buttonElement = screen.getAllByRole('button');
-
     const firstButtonElement = buttonElement[0];
-    const secondButtonElement = buttonElement[1];
-    const thirdButtonElement = buttonElement[2];
 
     userEvent.click(firstButtonElement);
-    userEvent.click(secondButtonElement);
-    userEvent.click(thirdButtonElement);
 
     render(<MockCheckoutPage />);
+    render(<MockCartComponent />);
 
-    const headingElement = screen.getByRole('heading', { name: 'Total: $11.51' });
+    const cartProductElement = screen.getAllByRole('button', { name: 'X' })[0];
 
-    expect(headingElement).toBeInTheDocument();
+    expect(cartProductElement).toBeInTheDocument();
   });
 });
