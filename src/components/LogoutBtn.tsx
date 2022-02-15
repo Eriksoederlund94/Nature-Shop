@@ -9,6 +9,7 @@ function LogoutBtn() {
 
   const logoutHandler = () => {
     dispatch({ type: 'SET_LOGGED_IN' });
+    localStorage.setItem('isLoggedIn', JSON.stringify(false));
     navigate('/');
   };
 

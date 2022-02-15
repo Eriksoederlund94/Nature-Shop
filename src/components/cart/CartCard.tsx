@@ -9,7 +9,7 @@ function CartCard({ id, imageUrl, produceName, weight, price, inStock, amount }:
 
   return (
     <CartItemWrapper>
-      <div className='cart-item-container'>
+      <div className='cart-item-container' data-testid={'cart-item-card'}>
         <div className='img-container'>
           {windowSize.width <= 750 ? <DeleteAllProductsBtn id={id} /> : null}
           <img src={imageUrl} alt='product' />

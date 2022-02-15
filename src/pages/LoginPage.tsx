@@ -31,7 +31,7 @@ function LoginPage() {
       }
     }
 
-    setErrorMessage('Wrong username or password!');
+    setErrorMessage('The user name or password is incorrect!');
   };
 
   return (

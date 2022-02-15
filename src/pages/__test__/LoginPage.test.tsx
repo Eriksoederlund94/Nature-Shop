@@ -2,7 +2,6 @@ import { render, screen } from '@testing-library/react';
 import LoginPage from '../LoginPage';
 import { BrowserRouter } from 'react-router-dom';
 import AppContextProvider from '../../context/AppContext';
-import { userInfo } from 'os';
 import userEvent from '@testing-library/user-event';
 
 const MockLoginPage = () => {

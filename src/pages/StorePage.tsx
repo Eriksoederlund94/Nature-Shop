@@ -36,7 +36,7 @@ const StorePageWrapper = styled.div`
     padding: 0.8rem 1.5rem;
     border: 0;
     background-color: #f0e9e9;
-    border-radius: 1.6rem;
+    border-radius: 0.5rem;
     width: 16rem;
   }
 `;
