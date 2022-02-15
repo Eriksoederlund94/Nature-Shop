@@ -47,7 +47,7 @@ function AddToCartBtn({ id, inStock, setToogle }: Props) {
     });
 
     dispatch({
-      type: 'SET_INITIAL_PRODUCTS',
+      type: 'SET_PRODUCTS',
       payload: productArray,
     });
 

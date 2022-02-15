@@ -47,7 +47,7 @@ function IncrementOrDecrementBtn({ id, amount, inStock, option }: Props) {
       localStorage.setItem('products', JSON.stringify(localStorageProducts));
 
       dispatch({
-        type: 'SET_INITIAL_PRODUCTS',
+        type: 'SET_PRODUCTS',
         payload: localStorageProducts,
       });
 
@@ -101,7 +101,7 @@ function IncrementOrDecrementBtn({ id, amount, inStock, option }: Props) {
     });
 
     dispatch({
-      type: 'SET_INITIAL_PRODUCTS',
+      type: 'SET_PRODUCTS',
       payload: localStorageProducts,
     });
   };

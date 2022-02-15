@@ -1,3 +1,6 @@
+import { useContext } from 'react';
+import { AppContext } from './context/AppContext';
+
 //React Router Dom
 import { Routes, Route, Navigate } from 'react-router-dom';
 
@@ -10,9 +13,6 @@ import LoginPage from './pages/LoginPage';
 import StorePage from './pages/StorePage';
 import CheckoutPage from './pages/CheckoutPage';
 import NotFoundPage from './pages/NotFoundPage';
-
-import { useContext } from 'react';
-import { AppContext } from './context/AppContext';
 
 function App() {
   const { state } = useContext(AppContext);

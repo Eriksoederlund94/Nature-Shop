@@ -13,7 +13,7 @@ interface AppState {
 export type AppAction =
   | { type: 'SET_LOGGED_IN' }
   | { type: 'SET_CURRENT_USER'; payload: string }
-  | { type: 'SET_INITIAL_PRODUCTS'; payload: ProductItem[] }
+  | { type: 'SET_PRODUCTS'; payload: ProductItem[] }
   | { type: 'SET_INITIAL_USER'; payload: UserItems[] }
   | { type: 'SET_CART'; payload: CartItem }
   | { type: 'SET_CART_AMOUNT'; payload: CartItem[] };
@@ -30,7 +30,7 @@ export function AppReducer(state: AppState, action: AppAction) {
         ...state,
         isLoggedIn: !state.isLoggedIn,
       };
-    case 'SET_INITIAL_PRODUCTS':
+    case 'SET_PRODUCTS':
       return {
         ...state,
         initialProducts: action.payload,

@@ -42,7 +42,7 @@ function DeleteAllProductsBtn({ id }: Props) {
     localStorage.setItem('products', JSON.stringify(resetStock));
 
     dispatch({
-      type: 'SET_INITIAL_PRODUCTS',
+      type: 'SET_PRODUCTS',
       payload: resetStock,
     });
 
