@@ -2,18 +2,19 @@ import { useContext, useState } from 'react';
 import StoreCard from './StoreCard';
 import { AppContext } from '../../context/AppContext';
 import styled from 'styled-components';
+import { ProductItem } from '../../interfaces/productsData.interface';
 
 function Store() {
   const [query, setQuery] = useState('');
   const { state } = useContext(AppContext);
   const productState = state.initialProducts && state?.initialProducts;
 
-  const inputHandler = (query: string, items: any) => {
+  const inputHandler = (query: string, items: ProductItem[]) => {
     if (!query) {
       return productState;
     }
 
-    return items.filter((item: any) => item.produceName.includes(query.toLowerCase()));
+    return items.filter((item: ProductItem) => item.produceName.includes(query.toLowerCase()));
   };
 
   const filteredProducts = inputHandler(query, productState);
@@ -23,7 +24,7 @@ function Store() {
       <input className='input' onChange={(e) => setQuery(e.target.value)} type='text' placeholder='Search produce' />
       {filteredProducts.length === 0 ? <h1>Sorry, no produce match your search.</h1> : null}
       <StoreWrapper>
-        {filteredProducts.map((products: any) => (
+        {filteredProducts.map((products: ProductItem) => (
           <StoreCard key={products.id} {...products} />
         ))}
       </StoreWrapper>

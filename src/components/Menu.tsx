@@ -1,17 +1,17 @@
 import styled from 'styled-components';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { AppContext } from '../context/AppContext';
 import { FiShoppingCart } from 'react-icons/fi';
 import { BiStore } from 'react-icons/bi';
-import { FiUser } from 'react-icons/fi';
 import LogoutBtn from './LogoutBtn';
+import { CartItem } from '../interfaces/cartData.interface';
 
 function Menu() {
   const { state } = useContext(AppContext);
   let navigate = useNavigate();
   const { pathname } = useLocation();
-  const totalAmount = state.cart.reduce((total: number, item: any) => {
+  const totalAmount = state.cart.reduce((total: number, item: CartItem) => {
     return total + item.amount;
   }, 0);
 

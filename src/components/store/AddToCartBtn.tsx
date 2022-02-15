@@ -23,14 +23,14 @@ function AddToCartBtn({ id, inStock, setToogle }: Props) {
   const addToCartHandler = () => {
     let productArray = state && state?.initialProducts;
     let cartArry = state && state?.cart;
-    const addProduct = productArray.find((item: any) => item.id === id)!;
+    const addProduct = productArray.find((item: ProductItem) => item.id === id)!;
 
     const cartItem: CartItem = { ...addProduct, amount: 1, inStock: inStock - 1 };
 
     localStorage.setItem('cart', JSON.stringify(cartArry));
 
     productArray.map((item: ProductItem) => {
-      if (item.id == id) {
+      if (item.id === id) {
         return {
           ...item,
           inStock: item.inStock--,

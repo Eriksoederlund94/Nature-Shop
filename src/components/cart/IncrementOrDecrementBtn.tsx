@@ -64,8 +64,6 @@ function IncrementOrDecrementBtn({ id, amount, inStock, option }: Props) {
           };
         }
         if (option === 'decrease') {
-          console.log(option);
-
           return {
             ...item,
             amount: item.amount--,

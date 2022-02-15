@@ -1,5 +1,4 @@
 import { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import styled from 'styled-components';
 import { AppContext } from '../context/AppContext';
@@ -7,8 +6,6 @@ import { AppContext } from '../context/AppContext';
 function LoginPage() {
   const { state, dispatch } = useContext(AppContext);
   const [errorMessage, setErrorMessage] = useState('');
-
-  let navigate = useNavigate();
 
   const userData = state.initialUser;
 
@@ -22,7 +19,6 @@ function LoginPage() {
 
     if (userNameCheck) {
       if (passwordCheck) {
-        navigate('/store');
         dispatch({ type: 'SET_LOGGED_IN' });
         dispatch({
           type: 'SET_CURRENT_USER',
