@@ -6,5 +6,6 @@ export const userData: UserItems[] = [
     userName: 'user',
     password: 'user',
     adress: 'Lilla bommens torg 4B',
+    email: 'user@user.com',
   },
 ];

@@ -3,4 +3,5 @@ export interface UserItems {
   userName: string;
   password: string;
   adress: string;
+  email: string;
 }

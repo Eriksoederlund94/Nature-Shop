@@ -11,6 +11,7 @@ function Menu() {
   const { state } = useContext(AppContext);
   let navigate = useNavigate();
   const { pathname } = useLocation();
+
   const totalAmount = state.cart.reduce((total: number, item: CartItem) => {
     return total + item.amount;
   }, 0);
