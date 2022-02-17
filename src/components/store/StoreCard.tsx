@@ -2,11 +2,10 @@ import { useContext, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { ProductItem } from '../../interfaces/productsData.interface';
 import { AppContext } from '../../context/AppContext';
-import { CartItem } from '../../interfaces/cartData.interface';
 import AddToCartBtn from './AddToCartBtn';
 
 function StoreCard({ id, imageUrl, produceName, weight, price, inStock }: ProductItem) {
-  const { state, dispatch } = useContext(AppContext);
+  const { state } = useContext(AppContext);
   const [toogle, setToogle] = useState(true);
 
   useEffect(() => {
