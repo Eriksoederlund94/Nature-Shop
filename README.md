@@ -44,3 +44,11 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## User stories
+
+-Som användare vill jag kunna "se" vilka produkter som finns i varukorgen så jag vet vilka produkter som finns i den.<br>
+-Som användare vill jag kunna "se" vilka produkter som finns i butiken så jag kan göra ett inköp. <br>
+-Som användare vill jag kunna "se" min totala summa i kundvagen så jag inte går över budget.<br>
+-Som användare vill jag kunna "filtrera" produkter för att lättare hitta det jag vill inhandla.<br>
+-Som användare vill jag kunna se antalet produkter i lager så jag kan göra ett köp innan produkten försvinner från butiken.<br>
